@@ -185,43 +185,47 @@ const Bill = () => {
                 onChange={handleItemChange}
               />
             </div>
-            <div className="input-block">
-              <label htmlFor="" className="label">
-                Contact 1 -{" "}
-                <span
-                  style={{
-                    backgroundColor: "#1C1C1E",
-                    color: "red",
-                    padding: "0 4px",
-                    fontSize: "x-large",
-                  }}
-                >
-                  *
-                </span>
-              </label>
-              <input
-                type="text"
-                style={{ width: "15vw" }}
-                className="input"
-                name="fromcontact1"
-                value={itemData.fromcontact1}
-                onChange={handleItemChange}
-              />
+           
+              <div className="input-block"  id="fromcontact">
+                <label htmlFor="" className="label">
+                  Contact 1 -{" "}
+                  <span
+                    style={{
+                      backgroundColor: "#1C1C1E",
+                      color: "red",
+                      padding: "0 4px",
+                      fontSize: "x-large",
+                    }}
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  
+                  className="input"
+                  name="fromcontact1"
+                  id="fromcontact1"
+                  value={itemData.fromcontact1}
+                  onChange={handleItemChange}
+                />
+              </div>
+              <div className="input-block" id="fromcontact">
+                <label htmlFor="" className="label">
+                  Contact 2 -{" "}
+                </label>
+                <input
+                  type="text"
+                  
+                  className="input"
+                  name="fromcontact2"
+                  id="fromcontact2"
+                  value={itemData.fromcontact2}
+                  onChange={handleItemChange}
+                />
+              </div>
             </div>
-            <div className="input-block">
-              <label htmlFor="" className="label">
-                Contact 2 -{" "}
-              </label>
-              <input
-                type="text"
-                style={{ width: "15vw" }}
-                className="input"
-                name="fromcontact2"
-                value={itemData.fromcontact2}
-                onChange={handleItemChange}
-              />
-            </div>
-            <div className="input-block">
+            <div className="input-block" style={{marginTop : "3vh"}} >
               <label htmlFor="" className="label">
                 Address -{" "}
                 <span
@@ -237,14 +241,15 @@ const Bill = () => {
               </label>
               <input
                 type="text"
-                style={{ width: "78vw" }}
+                
                 className="input"
+                id="fromaddress"
                 name="fromaddress"
                 value={itemData.fromaddress}
                 onChange={handleItemChange}
               />
             </div>
-          </div>
+          
         </section>
         <section className="to-section">
           <p className="to-heading">To*</p>
@@ -598,6 +603,66 @@ const StyledBill = styled.div`
     border-radius: 20px;
     margin-left: 25%;
     min-width: 40%;
+  }
+
+  
+
+  #fromcontact{
+    height: 5vh;
+    display: flex;
+      align-items: center;
+
+  }
+
+  #fromaddress{
+      width: 78vw;
+    }
+
+  #fromcontact1{
+    width: 15vw;
+  }
+
+  #fromcontact2{
+    width: 15vw;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 2% 3% 2% 3%;
+
+    .mainheading {
+      font-size: larger;
+      margin-bottom: 2vh;
+    }
+
+    .from-heading {
+      font-size: larger;
+    }
+
+    .from-form {
+      margin-top: -0.5vh;
+    }
+
+    .input-block {
+      font-size: small;
+    }
+
+    .input {
+      font-size: x-small;
+    }
+
+    #fromaddress{
+      width: 60vw;
+    }
+
+    #fromcontact1{
+    width: 20vw;
+  }
+
+  #fromcontact2{
+    width: 20vw;
+  }
+
+    
   }
 `;
 

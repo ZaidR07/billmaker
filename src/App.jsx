@@ -14,6 +14,12 @@ const App = () => {
 const StyledApp = styled.div`
   padding: 8vh 5% 0 5%;
 
+  @media screen and (max-width : 480px) {
+
+    padding : 4vh 4% 0 4%;
+  }
+
+
 `
 
 export default App;
