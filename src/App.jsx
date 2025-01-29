@@ -12,7 +12,7 @@ const App = () => {
 };
 
 const StyledApp = styled.div`
-  padding: 10vh 5% 0 5%;
+  padding: 8vh 5% 0 5%;
 
 `
 
