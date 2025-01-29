@@ -627,7 +627,8 @@ const StyledBill = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    padding: 2% 3% 2% 3%;
+    padding: 2% 3% 4% 3%;
+    margin-bottom: 5vh;
 
     .mainheading {
       font-size: larger;
@@ -636,6 +637,8 @@ const StyledBill = styled.div`
 
     .from-heading {
       font-size: larger;
+      margin-bottom: 2vh;
+
     }
 
     .from-form {

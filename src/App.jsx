@@ -16,7 +16,7 @@ const StyledApp = styled.div`
 
   @media screen and (max-width : 480px) {
 
-    padding : 4vh 4% 0 4%;
+    padding : 5vh 4% 0 4%;
   }
 
 
