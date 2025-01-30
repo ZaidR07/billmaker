@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { uri } from "./constant,js";
 
 const Bill = () => {
   const [items, setItems] = useState([]); // Fixed initialization
@@ -28,7 +29,7 @@ const Bill = () => {
 
   const submitdata = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/createpdf", {
+      const response = await axios.post(`${uri}createpdf`, {
         payload: items,
       });
       if (response.status == 200) {
@@ -79,7 +80,7 @@ const Bill = () => {
   const downloadpdf = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/downloadpdf",
+        `${uri}downloadpdf`,
         { path: pdfUrl },
         {
           responseType: "blob", // Ensure binary data is handled correctly
