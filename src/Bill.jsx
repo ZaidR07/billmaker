@@ -12,16 +12,16 @@ const Bill = () => {
 
   const [itemData, setItemData] = useState({
     date: "",
-    fromcompanyname: "Zaid Software Solutions",
-    cin: "2543363325353",
-    fromemail: "zaidstudy342@gmail.com",
-    fromcontact1: "7689654563",
-    fromcontact2: "7689654563",
-    fromaddress: "Tulinj Road, Nallasopara East",
-    tocompanyname: "Wipro Communications",
-    receivingperson: "Mr John Doe",
-    tocontact: "8799098765",
-    toaddress: "Bangalore",
+    fromcompanyname: "",
+    cin: "",
+    fromemail: "",
+    fromcontact1: "",
+    fromcontact2: "",
+    fromaddress: "",
+    tocompanyname: "",
+    receivingperson: "",
+    tocontact: "",
+    toaddress: "",
     description: "",
     qty: "",
     amount: "",
@@ -29,16 +29,28 @@ const Bill = () => {
 
   const submitdata = async () => {
     try {
-      const response = await axios.post(`${uri}createpdf`, {
-        payload: items,
-      });
-      if (response.status == 200) {
-        toast.success("Pdf Generated Successfully");
-        setPdfUrl(response.data.path);
+      if (
+        items.length > 0 &&
+        items[0].date &&
+        items[0].fromcompanyname &&
+        items[0].fromcontact1 &&
+        items[0].fromaddress &&
+        items[0].receivingperson &&
+        items[0].tocontact
+      ) {
+        const response = await axios.post(`${uri}createpdf`, {
+          payload: items,
+        });
+        if (response.status == 200) {
+          toast.success("Pdf Generated Successfully");
+          setPdfUrl(response.data.path);
 
-        setEnabledownload(true);
+          setEnabledownload(true);
+        }
+        resetcontrols();
+      } else {
+        alert("Fill all the data that are marked red");
       }
-      resetcontrols();
     } catch {
       alert("Something went wrong");
     }
@@ -131,6 +143,9 @@ const Bill = () => {
             }}
             type="date"
             className="input"
+            name="date" // Add name attribute
+            value={itemData.date} // Bind value to itemData.date
+            onChange={handleItemChange} // Add onChange handler
           />
         </div>
         <section className="from-section">
@@ -179,56 +194,17 @@ const Bill = () => {
               </label>
               <input
                 type="text"
-                style={{ width: "30vw" }}
+                style={{ width: "30vw" , alignItems : "center" }}
                 className="input"
                 name="fromemail"
                 value={itemData.fromemail}
                 onChange={handleItemChange}
               />
             </div>
-           
-              <div className="input-block"  id="fromcontact">
-                <label htmlFor="" className="label">
-                  Contact 1 -{" "}
-                  <span
-                    style={{
-                      backgroundColor: "#1C1C1E",
-                      color: "red",
-                      padding: "0 4px",
-                      fontSize: "x-large",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  
-                  className="input"
-                  name="fromcontact1"
-                  id="fromcontact1"
-                  value={itemData.fromcontact1}
-                  onChange={handleItemChange}
-                />
-              </div>
-              <div className="input-block" id="fromcontact">
-                <label htmlFor="" className="label">
-                  Contact 2 -{" "}
-                </label>
-                <input
-                  type="text"
-                  
-                  className="input"
-                  name="fromcontact2"
-                  id="fromcontact2"
-                  value={itemData.fromcontact2}
-                  onChange={handleItemChange}
-                />
-              </div>
-            </div>
-            <div className="input-block" style={{marginTop : "3vh"}} >
+
+            <div className="input-block" id="fromcontact">
               <label htmlFor="" className="label">
-                Address -{" "}
+                Contact 1 -{" "}
                 <span
                   style={{
                     backgroundColor: "#1C1C1E",
@@ -242,15 +218,50 @@ const Bill = () => {
               </label>
               <input
                 type="text"
-                
                 className="input"
-                id="fromaddress"
-                name="fromaddress"
-                value={itemData.fromaddress}
+                name="fromcontact1"
+                id="fromcontact1"
+                value={itemData.fromcontact1}
                 onChange={handleItemChange}
               />
             </div>
-          
+            <div className="input-block" id="fromcontact">
+              <label htmlFor="" className="label">
+                Contact 2 -{" "}
+              </label>
+              <input
+                type="text"
+                className="input"
+                name="fromcontact2"
+                id="fromcontact2"
+                value={itemData.fromcontact2}
+                onChange={handleItemChange}
+              />
+            </div>
+          </div>
+          <div className="input-block" style={{ marginTop: "3vh" }}>
+            <label htmlFor="" className="label">
+              Address -{" "}
+              <span
+                style={{
+                  backgroundColor: "#1C1C1E",
+                  color: "red",
+                  padding: "0 4px",
+                  fontSize: "x-large",
+                }}
+              >
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              className="input"
+              id="fromaddress"
+              name="fromaddress"
+              value={itemData.fromaddress}
+              onChange={handleItemChange}
+            />
+          </div>
         </section>
         <section className="to-section">
           <p className="to-heading">To*</p>
@@ -606,24 +617,21 @@ const StyledBill = styled.div`
     min-width: 40%;
   }
 
-  
-
-  #fromcontact{
+  #fromcontact {
     height: 5vh;
     display: flex;
-      align-items: center;
-
+    align-items: center;
   }
 
-  #fromaddress{
-      width: 78vw;
-    }
+  #fromaddress {
+    width: 75vw;
+  }
 
-  #fromcontact1{
+  #fromcontact1 {
     width: 15vw;
   }
 
-  #fromcontact2{
+  #fromcontact2 {
     width: 15vw;
   }
 
@@ -639,7 +647,6 @@ const StyledBill = styled.div`
     .from-heading {
       font-size: larger;
       margin-bottom: 2vh;
-
     }
 
     .from-form {
@@ -654,19 +661,17 @@ const StyledBill = styled.div`
       font-size: x-small;
     }
 
-    #fromaddress{
+    #fromaddress {
       width: 60vw;
     }
 
-    #fromcontact1{
-    width: 20vw;
-  }
+    #fromcontact1 {
+      width: 20vw;
+    }
 
-  #fromcontact2{
-    width: 20vw;
-  }
-
-    
+    #fromcontact2 {
+      width: 20vw;
+    }
   }
 `;
 
