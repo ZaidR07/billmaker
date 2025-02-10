@@ -480,6 +480,15 @@ const Bill = () => {
                   >
                     {item.amount}
                   </td>
+                  <td
+                    style={{
+                      backgroundColor: "#1C1C1E",
+                      height: "8vh",
+                      textAlign: "center",
+                    }}
+                  >
+                    {item.amount * item.qty}
+                  </td>
                 </tr>
               ))}
             </tbody>
