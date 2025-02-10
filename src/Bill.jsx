@@ -188,13 +188,13 @@ const Bill = () => {
                 onChange={handleItemChange}
               />
             </div>
-            <div className="input-block">
+            <div className="input-block" style={{alignItems : "center"}}>
               <label htmlFor="" className="label">
                 Email -{" "}
               </label>
               <input
                 type="text"
-                style={{ width: "30vw" , alignItems : "center" }}
+                style={{ width: "30vw"}}
                 className="input"
                 name="fromemail"
                 value={itemData.fromemail}
