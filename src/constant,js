@@ -1,2 +1,2 @@
-// export const uri = "https://billmaker-server.vercel.app/api/"
-export const uri = "http://localhost:4000/api/"
+export const uri = "https://billmaker-server.vercel.app/api/"
+// export const uri = "http://localhost:4000/api/"
