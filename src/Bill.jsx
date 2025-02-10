@@ -431,13 +431,16 @@ const Bill = () => {
                   S.no
                 </th>
                 <th style={{ backgroundColor: "#1C1C1E", height: "8vh" }}>
-                  Description
+                  Name
                 </th>
                 <th style={{ backgroundColor: "#1C1C1E", height: "8vh" }}>
                   Qty
                 </th>
                 <th style={{ backgroundColor: "#1C1C1E", height: "8vh" }}>
-                  Amount
+                  Amt
+                </th>
+                <th style={{ backgroundColor: "#1C1C1E", height: "8vh" }}>
+                  Total
                 </th>
               </tr>
             </thead>
